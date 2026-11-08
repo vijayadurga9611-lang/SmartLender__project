@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}About — Smart Lender{% endblock %}
+
+{% block content %}
+<section class="about-section py-5">
+  <div class="container py-3">
+
+    <div class="text-center mb-5">
+      <div class="badge-pill mb-3"><i class="fas fa-info-circle me-1"></i>About the Project</div>
+      <h1 class="page-title">Smart Lender</h1>
+      <p class="page-subtitle">AI-Powered Loan Approval Prediction System</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Project Info -->
+      <div class="col-lg-7">
+        <div class="about-card h-100">
+          <h4><i class="fas fa-project-diagram me-2 text-accent"></i>Project Overview</h4>
+          <p>Smart Lender is a complete end-to-end machine learning project that predicts loan approval eligibility using applicant financial and personal data. It demonstrates the full ML pipeline from data collection to web deployment.</p>
+          <h5 class="mt-4">Tech Stack</h5>
+          <div class="tech-grid mt-3">
+            {% for tech, icon in [
+              ('Python 3', 'fab fa-python'),
+              ('Flask', 'fas fa-server'),
+              ('Pandas', 'fas fa-table'),
+              ('NumPy', 'fas fa-calculator'),
+              ('Scikit-learn', 'fas fa-cogs'),
+              ('XGBoost', 'fas fa-fire'),
+              ('Matplotlib', 'fas fa-chart-bar'),
+              ('Seaborn', 'fas fa-chart-area'),
+              ('Bootstrap 5', 'fab fa-bootstrap'),
+              ('Pickle', 'fas fa-save')
+            ] %}
+            <div class="tech-item">
+              <i class="{{ icon }}"></i>
+              <span>{{ tech }}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- ML Models -->
+      <div class="col-lg-5">
+        <div class="about-card h-100">
+          <h4><i class="fas fa-brain me-2 text-accent"></i>ML Models</h4>
+          {% for m, desc, badge in [
+            ('Decision Tree',  'Max depth 6, interpretable splits', 'info'),
+            ('Random Forest',  '200 estimators, ensemble method',   'success'),
+            ('KNN',            'K=7 Nearest Neighbours, Euclidean', 'warning'),
+            ('XGBoost',        'Gradient boosting, best performer', 'primary')
+          ] %}
+          <div class="model-row mb-3">
+            <span class="badge bg-{{ badge }} me-2">{{ badge[0]|upper }}</span>
+            <strong>{{ m }}</strong>
+            <small class="d-block text-muted ms-4">{{ desc }}</small>
+          </div>
+          {% endfor %}
+
+          <h5 class="mt-4">Features Used (15)</h5>
+          <div class="feature-tag-list mt-2">
+            {% for f in ['Gender','Married','Dependents','Education','Self_Employed',
+                         'ApplicantIncome','CoapplicantIncome','LoanAmount','Loan_Amount_Term',
+                         'Credit_History','Property_Area','TotalIncome_log',
+                         'LoanAmount_log','EMI','Balance_Income'] %}
+            <span class="feature-tag">{{ f }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="col-12">
+        <div class="about-card">
+          <h4><i class="fas fa-sitemap me-2 text-accent"></i>ML Pipeline</h4>
+          <div class="pipeline-steps mt-3">
+            {% for step, icon in [
+              ('Data Collection','fas fa-database'),
+              ('EDA & Visualisation','fas fa-chart-pie'),
+              ('Cleaning & Missing Values','fas fa-broom'),
+              ('Encoding','fas fa-exchange-alt'),
+              ('Feature Engineering','fas fa-tools'),
+              ('Scaling','fas fa-balance-scale'),
+              ('Train / Test Split','fas fa-code-branch'),
+              ('Model Training','fas fa-robot'),
+              ('Evaluation','fas fa-check-double'),
+              ('Deployment','fas fa-rocket')
+            ] %}
+            <div class="pipeline-step">
+              <div class="pipeline-icon"><i class="{{ icon }}"></i></div>
+              <div class="pipeline-label">{{ step }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{{ url_for('predict') }}" class="btn btn-predict btn-lg px-5">
+        <i class="fas fa-brain me-2"></i>Try the Predictor
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

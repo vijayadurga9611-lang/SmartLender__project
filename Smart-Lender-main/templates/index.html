@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% block title %}Smart Lender — AI Loan Approval{% endblock %}
+
+{% block content %}
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero-section">
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="container hero-content text-center">
+    <div class="badge-pill mb-3 animate-fade-up">
+      <i class="fas fa-bolt me-1"></i> AI-Powered Decision Engine
+    </div>
+    <h1 class="hero-title animate-fade-up delay-1">
+      Smart Loan Approvals<br/>
+      <span class="gradient-text">in Seconds</span>
+    </h1>
+    <p class="hero-subtitle animate-fade-up delay-2">
+      Our machine learning models analyse your financial profile instantly,<br/>
+      delivering accurate, transparent loan decisions you can trust.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center gap-3 animate-fade-up delay-3">
+      <a href="{{ url_for('predict') }}" class="btn btn-hero-primary btn-lg">
+        <i class="fas fa-brain me-2"></i>Check Eligibility
+      </a>
+      <a href="{{ url_for('about') }}" class="btn btn-hero-outline btn-lg">
+        <i class="fas fa-play-circle me-2"></i>How it Works
+      </a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="hero-stats animate-fade-up delay-4">
+      <div class="stat-item">
+        <span class="stat-number">98%</span>
+        <span class="stat-label">Accuracy</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">1000+</span>
+        <span class="stat-label">Records Trained</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">ML Models</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">&lt;1s</span>
+        <span class="stat-label">Decision Time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FEATURES ══════════ -->
+<section class="section-light py-5">
+  <div class="container py-4">
+    <div class="section-header text-center mb-5">
+      <h2 class="section-title">Why Smart Lender?</h2>
+      <p class="section-subtitle">Built on proven ML algorithms for reliable decisions</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="feature-icon-wrap bg-blue">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h5 class="feature-title">Credit Analysis</h5>
+          <p class="feature-text">Holistic evaluation of credit history, income ratio, and financial behaviour for a complete risk picture.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="feature-icon-wrap bg-green">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h5 class="feature-title">Multi-Model Engine</h5>
+          <p class="feature-text">Trained on Decision Tree, Random Forest, KNN, and XGBoost — the best performer powers every decision.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="feature-icon-wrap bg-purple">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h5 class="feature-title">Instant Results</h5>
+          <p class="feature-text">Get your loan eligibility status and approval probability in under a second.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section class="section-dark py-5">
+  <div class="container py-4">
+    <div class="section-header text-center mb-5">
+      <h2 class="section-title text-white">How It Works</h2>
+      <p class="section-subtitle text-muted">Three simple steps to your answer</p>
+    </div>
+    <div class="row g-4 align-items-center">
+      <div class="col-md-4 text-center">
+        <div class="step-circle">1</div>
+        <h5 class="mt-3 text-white">Fill the Form</h5>
+        <p class="text-muted">Enter your personal and financial details in the secure prediction form.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="step-circle">2</div>
+        <h5 class="mt-3 text-white">AI Analysis</h5>
+        <p class="text-muted">Our ML model processes 15 engineered features to evaluate your profile.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="step-circle">3</div>
+        <h5 class="mt-3 text-white">Get Decision</h5>
+        <p class="text-muted">Receive an instant approval prediction with confidence percentage.</p>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <a href="{{ url_for('predict') }}" class="btn btn-accent btn-lg px-5">
+        <i class="fas fa-rocket me-2"></i>Start Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MODELS ══════════ -->
+<section class="section-light py-5">
+  <div class="container py-4">
+    <div class="section-header text-center mb-5">
+      <h2 class="section-title">ML Models Used</h2>
+      <p class="section-subtitle">Best performer selected automatically after training</p>
+    </div>
+    <div class="row g-3 justify-content-center">
+      {% for model, icon, desc in [
+          ('Decision Tree',  'fas fa-sitemap',   'Interpretable tree-based classifier'),
+          ('Random Forest',  'fas fa-tree',      'Ensemble of 200 decision trees'),
+          ('KNN',            'fas fa-network-wired', 'K-Nearest Neighbours (K=7)'),
+          ('XGBoost',        'fas fa-fire',      'Gradient boosted trees, state-of-art')
+      ] %}
+      <div class="col-6 col-md-3">
+        <div class="model-card text-center h-100">
+          <i class="{{ icon }} model-icon"></i>
+          <h6 class="mt-3 mb-1">{{ model }}</h6>
+          <small class="text-muted">{{ desc }}</small>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-section py-5 text-center">
+  <div class="container py-3">
+    <h2 class="cta-title">Ready to check your eligibility?</h2>
+    <p class="cta-subtitle">It takes less than 60 seconds — no credit score impact.</p>
+    <a href="{{ url_for('predict') }}" class="btn btn-white-outline btn-lg mt-2 px-5">
+      <i class="fas fa-brain me-2"></i>Predict My Loan
+    </a>
+  </div>
+</section>
+
+{% endblock %}
